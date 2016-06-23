@@ -21,6 +21,7 @@ class generate_controller extends controller
                 $total = 0;
                 foreach ($quote['services'] as $k => $service) {
                     $serv = $this->model('services')->getById($service['id']);
+                    $service['service_name'] = $serv['service_name'];
                     $service['rate'] = $serv['rate'];
                     $service['description'] = $serv['description'];
                     $service['total'] = $service['rate'] * $service['qty'];
