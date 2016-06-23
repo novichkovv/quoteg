@@ -23,6 +23,7 @@ class index_controller extends controller
                     'q.id',
                     'qs.status_name',
                     'DATE(q.create_date)',
+                    'CONCAT(u.user_name, " ", u.user_surname)',
                     'CONCAT("
                     <a class=\"btn btn-outline green change_status\" href=\"#status_modal\" data-toggle=\"modal\" data-id=\"",q.id,"\">
                         Change Status
@@ -32,6 +33,10 @@ class index_controller extends controller
                 $params['join']['quote_statuses'] = [
                     'as' => 'qs',
                     'on' => 'q.status_id = qs.id'
+                ];
+                $params['join']['quote_users'] = [
+                    'as' => 'u',
+                    'on' => 'q.creator = u.id'
                 ];
                 if(!$this->model('quote_user_groups')->getById(registry::get('user')['user_group_id'])['quote_visibility']) {
                     $params['where']['creator'] = [

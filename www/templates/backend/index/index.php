@@ -43,11 +43,13 @@
                                 <input type="text" class="form-control filter-field datepicker" data-sign="=" name="DATE(q.create_date)" placeholder="search">
                             </td>
                             <td></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>Quote #</th>
                             <th>Status</th>
                             <th>Date</th>
+                            <th>Owner</th>
                             <th>Action</th>
                         </tr>
                         </thead>
