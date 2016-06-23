@@ -45,7 +45,7 @@ INSERT INTO `quote_system_routes` (`route`, `title`, `position`, `hidden`, `perm
 INSERT INTO `quote_system_routes` (`route`, `title`, `position`, `hidden`, `permitted`, `extenal`, `parent`, `icon`) VALUES ('users/add_group', 'Add Group', '8', '0', '0', '0', '22', 'icon-users-follow');
 INSERT INTO `quote_system_routes` (`route`, `title`, `position`, `hidden`, `permitted`, `extenal`, `parent`, `icon`) VALUES ('users/permissions', 'Users Permissions', '9', '0', '0', '0', '22', ' icon-close');
 
-INSERT INTO `quote`.`quote_user_groups` (`group_name`, `create_date`) VALUES ('admin', '2016-06-22');
+INSERT INTO `quote_user_groups` (`group_name`, `create_date`) VALUES ('admin', '2016-06-22');
 INSERT INTO quote_system_routes_user_groups_relations SET system_route_id = '22', user_group_id = '5';
 INSERT INTO quote_system_routes_user_groups_relations SET system_route_id = '23', user_group_id = '5';
 INSERT INTO quote_system_routes_user_groups_relations SET system_route_id = '24', user_group_id = '5';
@@ -83,10 +83,10 @@ CREATE TABLE quote_statuses (
   status_name VARCHAR (255) NOT NULL
 )ENGINE=MyISAM;
 
-INSERT INTO `quote`.`quote_statuses` (`status_name`) VALUES ('new');
-INSERT INTO `quote`.`quote_statuses` (`status_name`) VALUES ('won');
-INSERT INTO `quote`.`quote_statuses` (`status_name`) VALUES ('lost');
-INSERT INTO `quote`.`quote_statuses` (`status_name`) VALUES ('not followed');
+INSERT INTO `quote_statuses` (`status_name`) VALUES ('new');
+INSERT INTO `quote_statuses` (`status_name`) VALUES ('won');
+INSERT INTO `quote_statuses` (`status_name`) VALUES ('lost');
+INSERT INTO `quote_statuses` (`status_name`) VALUES ('not followed');
 
 ALTER TABLE quote_user_groups ADD quote_visibility TINYINT NOT NULL DEFAULT 0;
 

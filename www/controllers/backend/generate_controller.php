@@ -84,6 +84,7 @@ class generate_controller extends controller
         $pdf->Output($contract_file, 'F');
         header("Content-type:application/pdf");
         readfile($contract_file);
+        unlink($contract_file);
         exit;
     }
 }
