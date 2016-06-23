@@ -70,3 +70,24 @@ create_date DATETIME NOT NULL
 )ENGINE=MyISAM;
 
 INSERT INTO `quote_system_routes` (`route`, `title`, `position`, `hidden`, `permitted`, `extenal`, `parent`, `icon`) VALUES ('services/add', 'Add service', '10', '1', '0', '0', '0', '');
+
+CREATE TABLE quotes (
+  id SERIAL PRIMARY KEY,
+  creator BIGINT UNSIGNED NOT NULL,
+  status_id INT UNSIGNED NOT NULL DEFAULT 1,
+  create_date DATETIME NOT NULL
+)ENGINE=MyISAM;
+
+CREATE TABLE quote_statuses (
+  id SERIAL PRIMARY KEY,
+  status_name VARCHAR (255) NOT NULL
+)ENGINE=MyISAM;
+
+INSERT INTO `quote`.`quote_statuses` (`status_name`) VALUES ('new');
+INSERT INTO `quote`.`quote_statuses` (`status_name`) VALUES ('won');
+INSERT INTO `quote`.`quote_statuses` (`status_name`) VALUES ('lost');
+INSERT INTO `quote`.`quote_statuses` (`status_name`) VALUES ('not followed');
+
+ALTER TABLE quote_user_groups ADD quote_visibility TINYINT NOT NULL DEFAULT 0;
+
+ALTER TABLE quote_users ADD company_id BIGINT UNSIGNED NOT NULL AFTER user_group_id;

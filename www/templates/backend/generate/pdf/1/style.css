@@ -1,0 +1,76 @@
+* {
+    font-family: "Myriad Pro", "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+}
+.col10 {
+    width: 10%;
+    float: left;
+}
+.col15 {
+    width: 14.9%;
+    float: left;
+}
+.col20 {
+    width: 20%;
+    float: left;
+}
+.col25 {
+    width: 25%;
+    float: left;
+}
+.col30 {
+    width: 30%;
+    float: left;
+}
+.col40 {
+    width: 40%;
+    float: left;
+}
+.col50 {
+    width: 48%;
+    float: left;
+}
+.col55 {
+    width: 55%;
+    float: left;
+}
+.col60 {
+    width: 60%;
+    float: left;
+}
+.offset10 {
+    margin-left: 9%;
+}
+.offset15 {
+    margin-left: 14%;
+}
+.offset20 {
+    margin-left: 19%;
+}
+.offset30 {
+    margin-left: 29%;
+}
+.offset40 {
+    margin-left: 39%;
+}
+.offset50 {
+    margin-left: 49%;
+}
+.offset60 {
+    margin-left: 59%;
+}
+.offset70 {
+    margin-left: 69%;
+}
+.row {
+    clear: both;
+}
+#header {
+    font-size: 13px;
+}
+td {
+    border-bottom: 1px solid #666;
+    border-spacing: 0px;
+}
+th {
+    border-bottom: 2px solid black;
+}

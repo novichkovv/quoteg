@@ -33,6 +33,7 @@ class users_controller extends controller
                     'u.user_name',
                     'u.user_surname',
                     'g.group_name',
+                    'IF(c.company_name IS NULL, "No", c.company_name)',
                     'u.email',
                     'DATE_FORMAT(u.create_date,"%d/%m/%Y")',
                     'CONCAT("<a href=\"' . SITE_DIR .'users/add/?id=", u.id, "\" class=\"btn btn-default btn-xs\">
@@ -45,6 +46,11 @@ class users_controller extends controller
                 $params['join']['quote_user_groups'] = array(
                     'on' => 'u.user_group_id = g.id',
                     'as' => 'g',
+                    'left' => true
+                );
+                $params['join']['companies'] = array(
+                    'on' => 'u.company_id = c.id',
+                    'as' => 'c',
                     'left' => true
                 );
                 echo json_encode($this->getDataTable($params));
@@ -66,6 +72,7 @@ class users_controller extends controller
             $row['user_name'] = $_POST['user_name'];
             $row['user_surname'] = $_POST['user_surname'];
             $row['user_group_id'] = $_POST['user_group_id'];
+            $row['company_id'] = $_POST['company_id'];
             if($_POST['user_password']) {
                 $row['user_password'] = md5($_POST['user_password']);
             }
@@ -79,6 +86,7 @@ class users_controller extends controller
             header('Location: ' . SITE_DIR . 'users/');
             exit;
         }
+        $this->render('companies', $this->model('companies')->getAll('company_name'));
         $this->render('user_groups', $this->model('quote_user_groups')->getAll());
         if($_GET['id']) {
             $this->render('user', $this->model('quote_users')->getById($_GET['id']));
@@ -105,6 +113,7 @@ class users_controller extends controller
                 $row['id'] = $_GET['id'];
             }
             $row['group_name'] = $_POST['group_name'];
+            $row['quote_visibility'] = $_POST['quote_visibility'];
             $row['create_date'] = date('Y-m-d H:i:s');
             $this->model('quote_user_groups')->insert($row);
             header('Location: ' . SITE_DIR . 'users/groups/');
