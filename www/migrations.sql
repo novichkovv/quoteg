@@ -42,7 +42,7 @@ INSERT INTO `quote_system_routes` (`route`, `title`, `position`, `icon`) VALUES 
 INSERT INTO `quote_system_routes` (`route`, `title`, `position`, `hidden`, `permitted`, `extenal`, `parent`, `icon`) VALUES ('users', 'Users List', '5', '0', '0', '0', '22', 'icon-user');
 INSERT INTO `quote_system_routes` (`route`, `title`, `position`, `hidden`, `permitted`, `extenal`, `parent`, `icon`) VALUES ('users/add', 'Users Add', '6', '0', '0', '0', '22', 'icon-user-follow');
 INSERT INTO `quote_system_routes` (`route`, `title`, `position`, `hidden`, `permitted`, `extenal`, `parent`, `icon`) VALUES ('users/groups', 'User Groups', '7', '0', '0', '0', '22', 'icon-users');
-INSERT INTO `quote_system_routes` (`route`, `title`, `position`, `hidden`, `permitted`, `extenal`, `parent`, `icon`) VALUES ('users/add_group', 'Add Group', '8', '0', '0', '0', '22', 'icon-users-follow');
+INSERT INTO `quote_system_routes` (`route`, `title`, `position`, `hidden`, `permitted`, `extenal`, `parent`, `icon`) VALUES ('users/add_group', 'Add Group', '8', '0', '0', '0', '22', 'icon-users');
 INSERT INTO `quote_system_routes` (`route`, `title`, `position`, `hidden`, `permitted`, `extenal`, `parent`, `icon`) VALUES ('users/permissions', 'Users Permissions', '9', '0', '0', '0', '22', ' icon-close');
 
 INSERT INTO `quote_user_groups` (`group_name`, `create_date`) VALUES ('admin', '2016-06-22');

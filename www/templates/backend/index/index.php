@@ -90,26 +90,6 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="delete_modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form method="post" action="">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Delete Phrase</h4>
-                </div>
-                <div class="modal-body with-padding">
-                    Are You Sure?
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" name="phrases_to_delete" value="">
-                    <button type="submit" class="btn btn-primary" name="delete_phrase_btn">Yes</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function () {

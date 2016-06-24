@@ -1,7 +1,13 @@
 <hr style="border-top: 3px solid grey;">
 <div id="header">
     <div class="row">
-        <div class="col15 offset70">
+        <div class="col15">
+            Address:
+        </div>
+        <div class="col55">
+            <?php echo nl2br($quote['address']); ?>
+        </div>
+        <div class="col15">
             Phone:<br>
             Fax:<br>
             Mobile:<br>
@@ -42,7 +48,7 @@
         </div>
         <div class="col15">
             <br>
-            <?php echo $quote['expiration_date']; ?>
+            <?php echo $quote['expiration_date']; ?><br>
             <?php echo $quote['po_no'] ? $quote['po_no'] : 'N/A'; ?><br>
         </div>
     </div>
@@ -89,7 +95,7 @@
 <br><br>
 
 <span style="font-size: 12px;">
-    <i>This Price Quotation is made subject to the Terms of Proposal and Terms and Conditions of Service, which are attached hereto and made a part hereof. Based on 2015
+    <i>This Price Quotation is made subject to the Terms of Proposal and Terms and Conditions of Service, which are attached hereto and made a part hereof. Based on <?php echo date('Y'); ?>
         VIATechnik Engineering Services Billing Rate Schedule hourly rates and our estimated time to complete this project.  Invoices will be based on actual hours worked, billed
         on a monthly basis. VIATechnik accepts no responsibility and will not be held liable for losses either financial, or consequential, or otherwise from the use or lack of use
         our estimating and engineering services.</i>

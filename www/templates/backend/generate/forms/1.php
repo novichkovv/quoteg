@@ -19,6 +19,15 @@
         </div>
         <div class="form-group">
             <label class="control-label col-md-3">
+                Address *
+            </label>
+            <div class="col-md-9">
+                <textarea data-require="1" name="quote[address]" class="form-control"><?php echo $comp['address'] . ",\n"; ?> <?php echo $comp['city']; ?>, <?php echo $comp['state']; ?></textarea>
+                <div class="error-require validate-message">Required Field</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
                 Phone
             </label>
             <div class="col-md-9">
@@ -106,10 +115,10 @@
                     </select>
                     <div class="error-require validate-message">Required Field</div>
                 </div>
-                <div class="col-md-2">
-                    <input type="text" data-require="1" id="service_qty" class="form-control" placeholder="Qty">
-                    <div class="error-require validate-message">Required Field</div>
-                </div>
+<!--                <div class="col-md-2">-->
+<!--                    <input type="text" data-require="1" id="service_qty" class="form-control" placeholder="Qty">-->
+<!--                    <div class="error-require validate-message">Required Field</div>-->
+<!--                </div>-->
                 <div class="col-md-1">
                     <button type="button" class="btn btn-outline btn-icon green" id="add_service"><i class="fa fa-plus"></i> </button>
                 </div>
@@ -138,25 +147,28 @@
         $("#add_service").click(function() {
             if(validate("service_field")) {
                 var service_id = $('#service_id').val();
-                var service_name = $("#service_id option[value='" + service_id + "']").html();
-                var qty = $("#service_qty").val();
+//                var service_name = $("#service_id option[value='" + service_id + "']").html();
+//                var qty = $("#service_qty").val();
                 var count = $(".service").length;
+                var params = {
+                    'action': 'get_service_field',
+                    'values': {service_id: service_id, 'count': count},
+                    'callback': function (msg) {
+                        ajax_respond(msg,
+                            function (respond) { //success
+                                $("#services").append(respond.template);
+                                $("#service_qty").val('');
+                            },
+                            function (respond) { //fail
+                            }
+                        );
+                    }
+                };
+                ajax(params);
                 $("#services").append(
-                    '<div class="service row">' +
-                    '   <div class="col-md-6 col-md-offset-3">' +
-                            service_name +
-                    '       <input type="hidden" name="quote[services][' + count + '][id]" value="' + service_id + '">' +
-                    '   </div>' +
-                    '   <div class="col-md-2">' +
-                    '       <input type="text" data-require="1" name="quote[services][' + count + '][qty]" class="form-control" placeholder="Qty" value="' + qty + '">' +
-                    '       <div class="error-require validate-message">Required Field</div>' +
-                    '   </div>' +
-                    '   <div class="col-md-1">' +
-                    '       <button type="button" class="btn btn-outline red btn-icon remove_service"><i class="fa fa-trash"></i></button>' +
-                    '   </div>' +
-                    '</div><br>'
+
                 );
-                $("#service_qty").val('');
+
             }
         })
     });
