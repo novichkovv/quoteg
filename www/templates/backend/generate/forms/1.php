@@ -19,6 +19,15 @@
         </div>
         <div class="form-group">
             <label class="control-label col-md-3">
+                Company Name *
+            </label>
+            <div class="col-md-9">
+                <input type="text" id="company_name" name="quote[company_name]" class="form-control" value="<?php echo $comp['company_name']; ?>" data-require="1">
+                <div class="error-require validate-message">Required Field</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
                 Address *
             </label>
             <div class="col-md-9">
@@ -124,15 +133,6 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="control-label col-md-3">
-                Company Name
-            </label>
-            <div class="col-md-9">
-                <input type="text" id="company_name" name="quote[company_name]" class="form-control" value="<?php echo $comp['company_name']; ?>">
-                <div class="error-require validate-message">Required Field</div>
-            </div>
-        </div>
     </div>
 </div>
 <input type="hidden" name="template_no" value="1">
@@ -143,7 +143,20 @@
             format: 'MM dd, yyyy',
             autoclose: true
         });
-
+        $("body").on("change", "#company_select", function () {
+            var company_id = $(this).val();
+            var params = {
+                'action': 'get_company',
+                values: {company_id: company_id},
+                'callback': function (msg) {
+                    var company = JSON.parse(msg);
+                    $("[name='quote[address]']").val(company.address + "\n" + company.city + " " + company.state);
+                    $("[name='quote[company_name]']").val(company.company_name);
+                    $("[name='quote[phone]']").val(company.phone_number);
+                }
+            };
+            ajax(params);
+        });
         $("#add_service").click(function() {
             if(validate("service_field")) {
                 var service_id = $('#service_id').val();

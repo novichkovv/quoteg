@@ -74,6 +74,11 @@ class generate_controller extends controller
                 echo json_encode(array('status' => 1, 'template' => $this->fetch('generate' . DS . 'ajax' . DS . 'service')));
                 exit;
                 break;
+
+            case "get_company":
+                echo json_encode($this->model('companies')->getCompany($_POST['company_id']));
+                exit;
+                break;
         }
     }
 
