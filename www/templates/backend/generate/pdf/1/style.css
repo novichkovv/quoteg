@@ -67,10 +67,17 @@
 #header {
     font-size: 13px;
 }
-td {
+.table td {
     border-bottom: 1px solid #666;
     border-spacing: 0px;
 }
-th {
+.table th {
     border-bottom: 2px solid black;
+}
+.t1 th {
+    border-bottom: 1px solid black;
+    text-align: left;
+}
+.t1 td {
+    text-align: center;
 }
