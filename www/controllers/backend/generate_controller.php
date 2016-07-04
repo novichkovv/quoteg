@@ -35,11 +35,6 @@ class generate_controller extends controller
         }
         if(!$visibility = $this->model('quote_user_groups')->getById(registry::get('user')['user_group_id'])['quote_visibility']) {
             $companies = $this->model('companies')->getByField('id', registry::get('user')['company_id'], true);
-//            foreach ($this->model('companies')->getAll() as $company) {
-//                if($company['id'] == registry::get('user')['company_id']) {
-//                    $companies[] = $company;
-//                }
-//            }
         } else {
             $companies = $this->model('companies')->getAll('company_name');
         }
@@ -49,6 +44,7 @@ class generate_controller extends controller
         } else {
             $comp = $this->model('companies')->getCompany($companies[array_keys($companies)[0]]['id']);
         }
+        $this->render('templates', $this->model('templates')->getAll());
         $this->render('comp', $comp);
         $this->render('services', $this->model('services')->getAll());
         $this->render('companies', $companies);
@@ -63,6 +59,19 @@ class generate_controller extends controller
                     echo json_encode(array('status' => 2));
                     exit;
                 }
+                if(!$visibility = $this->model('quote_user_groups')->getById(registry::get('user')['user_group_id'])['quote_visibility']) {
+                    $companies = $this->model('companies')->getByField('id', registry::get('user')['company_id'], true);
+                } else {
+                    $companies = $this->model('companies')->getAll('company_name');
+                }
+                if(count($companies) == 1) {
+                    $comp = $this->model('companies')->getCompany($companies[array_keys($companies)[0]]['id']);
+
+                } else {
+                    $comp = $this->model('companies')->getCompany($companies[array_keys($companies)[0]]['id']);
+                }
+                $this->render('comp', $comp);
+                $this->render('services', $this->model('services')->getAll());
                 $template = $this->fetch('generate' . DS . 'forms' . DS . $_POST['template_no']);
                 echo json_encode(array('status' => 1, 'template' => $template));
                 exit;

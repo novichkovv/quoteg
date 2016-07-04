@@ -92,4 +92,12 @@ ALTER TABLE quote_user_groups ADD quote_visibility TINYINT NOT NULL DEFAULT 0;
 
 ALTER TABLE quote_users ADD company_id BIGINT UNSIGNED NOT NULL AFTER user_group_id;
 
+CREATE TABLE templates (
+  id SERIAL PRIMARY KEY,
+  template_name VARCHAR (255) NOT NULL
+);
+
+INSERT INTO `quote`.`templates` (`id`, `template_name`) VALUES ('1', 'Template 1');
+
+
 
