@@ -68,6 +68,7 @@
                             </div>
                         </div>
                     </div>
+                    <br><br><br>
                     <div class="row">
                         <div class="col-md-offset-3">
                             <button type="submit" class="btn btn-outline btn-lg blue" name="generate_btn">
