@@ -91,3 +91,5 @@ INSERT INTO `quote_statuses` (`status_name`) VALUES ('not followed');
 ALTER TABLE quote_user_groups ADD quote_visibility TINYINT NOT NULL DEFAULT 0;
 
 ALTER TABLE quote_users ADD company_id BIGINT UNSIGNED NOT NULL AFTER user_group_id;
+
+

@@ -94,7 +94,7 @@
                 Expiration Date
             </label>
             <div class="col-md-9">
-                <input type="text" name="quote[expiration_date]" class="form-control date-picker" value="">
+                <input type="text" name="quote[expiration_date]" class="form-control date-picker" value="<?php echo date('F d, Y', strtotime(date('Y-m-d') . ' + 30 day')); ?>">
                 <div class="error-require validate-message">Required Field</div>
             </div>
         </div>

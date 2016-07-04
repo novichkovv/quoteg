@@ -9,6 +9,11 @@ class index_controller extends controller
 {
     public function index()
     {
+        if(isset($_POST['download_id'])) {
+            header("Content-type:application/pdf");
+            readfile(ROOT_DIR . 'uploads' . DS . $_POST['download_id'] . '.pdf');
+            exit;
+        }
         $this->render('statuses', $this->model('quote_statuses')->getAll());
         $this->view('index' . DS . 'index');
     }
@@ -28,6 +33,7 @@ class index_controller extends controller
                     <a class=\"btn btn-outline green change_status\" href=\"#status_modal\" data-toggle=\"modal\" data-id=\"",q.id,"\">
                         Change Status
                     </a>
+                    <button type=\"button\" class=\"btn btn-outline blue download\"   data-id=\"",q.id,"\"><i class=\"fa fa-download\"></i> Download</button>
                     ")'
                 ];
                 $params['join']['quote_statuses'] = [

@@ -1,10 +1,12 @@
 <div class="service row">
-    <div class="col-md-2">
+    <div class="col-md-3">
         <label>Name</label>
-        <b><?php echo $service['service_name']; ?></b>
+        <input type="text" data-require="1" name="quote[services][<?php echo $count; ?>][service_name]" class="form-control" placeholder="Name" value="<?php echo $service['service_name']; ?>">
+        <div class="error-require validate-message">Required Field</div>
+<!--        <b>--><?php //echo $service['service_name']; ?><!--</b>-->
         <input type="hidden" name="quote[services][<?php echo $count; ?>][id]" value="<?php echo $service['id']; ?>">
     </div>
-    <div class="col-md-7">
+    <div class="col-md-6">
         <label>Description</label>
         <textarea rows="5" name="quote[services][<?php echo $count; ?>][description]" class="form-control"><?php echo $service['description']; ?></textarea>
     </div>

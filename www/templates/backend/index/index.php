@@ -90,6 +90,9 @@
         </div>
     </div>
 </div>
+<form id="download_form" method="post" target="_blank">
+    <input type="hidden" name="download_id" id="download_id">
+</form>
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function () {
@@ -117,6 +120,13 @@
             };
             ajax(params);
             return false;
-        })
+        });
+
+        $("body").on("click", ".download", function () {
+            var id = $(this).attr('data-id');
+            console.log(id);
+            $("#download_id").val(id);
+            $("#download_form").submit();
+        });
     });
 </script>
