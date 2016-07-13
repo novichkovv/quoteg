@@ -35,6 +35,24 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label col-md-5">Default Unit *</label>
+                        <div class="col-md-7">
+                            <select name="service[default_unit]" class="form-control"  data-require="1">
+                            <?php foreach ($units as $unit): ?>
+                                <option value="<?php echo $unit['id']; ?>"
+                                    <?php if ($unit['id'] == $service['default_unit']): ?>
+                                        selected
+                                    <?php endif; ?>>
+                                    <?php echo $unit['unit_name']; ?>
+                                    </option>
+                            <?php endforeach; ?>
+                            </select>
+                            <div class="error-require validate-message">
+                                Required Field
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label col-md-5">Service Rate *</label>
                         <div class="col-md-7">
                             <input type="text" name="service[rate]" autocomplete="off" class="form-control"  data-require="1" value="<?php echo $service['rate']; ?>">

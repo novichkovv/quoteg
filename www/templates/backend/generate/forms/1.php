@@ -31,7 +31,25 @@
                 Address *
             </label>
             <div class="col-md-9">
-                <textarea data-require="1" name="quote[address]" class="form-control"><?php echo $comp['address'] . ",\n"; ?> <?php echo $comp['city']; ?>, <?php echo $comp['state']; ?></textarea>
+                <textarea data-require="1" name="quote[address]" class="form-control"><?php echo $comp['address']; ?></textarea>
+                <div class="error-require validate-message">Required Field</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                City *
+            </label>
+            <div class="col-md-9">
+                <input type="text" data-require="1" name="quote[city]" class="form-control" value="<?php echo $comp['city']; ?>">
+                <div class="error-require validate-message">Required Field</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                State *
+            </label>
+            <div class="col-md-9">
+                <input type="text" data-require="1" name="quote[state]" class="form-control" value="<?php echo $comp['state']; ?>">
                 <div class="error-require validate-message">Required Field</div>
             </div>
         </div>
@@ -91,6 +109,24 @@
         </div>
         <div class="form-group">
             <label class="control-label col-md-3">
+                Project Type
+            </label>
+            <div class="col-md-7">
+                <select class="form-control" name="quote[project_type]">
+                    <?php if ($types): ?>
+                        <?php foreach ($types as $type): ?>
+                            <option value="<?php echo addslashes($type['type_name']); ?>"><?php echo $type['type_name']; ?></option>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </select>
+                <div class="error-require validate-message">Required Field</div>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-default btn-icon" data-toggle="modal" href="#type_modal"><i class="fa fa-plus"></i> </a>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
                 Expiration Date
             </label>
             <div class="col-md-9">
@@ -104,6 +140,15 @@
             </label>
             <div class="col-md-9">
                 <input type="text" name="quote[po_no]" class="form-control" value="">
+                <div class="error-require validate-message">Required Field</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3" style="padding-top: 0 !important;">
+                Hourly Basis term
+            </label>
+            <div class="col-md-9">
+                <input type="checkbox" name="quote[hourly_basis]" class="form-control" value="1" checked>
                 <div class="error-require validate-message">Required Field</div>
             </div>
         </div>

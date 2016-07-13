@@ -43,6 +43,10 @@
                                 <input type="text" class="form-control filter-field datepicker" data-sign="=" name="DATE(q.create_date)" placeholder="search">
                             </td>
                             <td></td>
+                            <td><input type="text" class="form-control filter-field" data-sign="=" name="q.company_name" placeholder="search"></td>
+                            <td><input type="text" class="form-control filter-field " data-sign="=" name="q.project_name" placeholder="search"></td>
+                            <td></td>
+
                             <td></td>
                         </tr>
                         <tr>
@@ -50,6 +54,9 @@
                             <th>Status</th>
                             <th>Date</th>
                             <th>Owner</th>
+                            <th>Company Name</th>
+                            <th>Project Name</th>
+                            <th>Amount</th>
                             <th>Action</th>
                         </tr>
                         </thead>

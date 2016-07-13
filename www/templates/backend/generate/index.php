@@ -31,9 +31,13 @@
                                         Company
                                     </label>
                                     <div class="col-md-9">
-                                        <select class="form-control" id="company_select">
-                                            <?php foreach ($companies as $company): ?>
-                                                <option value="<?php echo $company['id']; ?>">
+                                        <select class="form-control" id="company_select" name="company_id">
+                                            <option value="0">New</option>
+                                            <?php foreach ($companies as $k => $company): ?>
+                                                <option value="<?php echo $company['id']; ?>"
+                                                    <?php if (!$k): ?>
+                                                        selected
+                                                    <?php endif; ?>>
                                                     <?php echo $company['company_name']; ?>
                                                 </option>
                                             <?php endforeach; ?>
@@ -81,12 +85,53 @@
         </form>
     </div>
 </div>
+<div class="modal fade" id="type_modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <form id="type_form" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Add Project Type</h4>
+                </div>
+                <div class="modal-body with-padding">
+                    <div class="form-group">
+                        <label>Project Type Name</label>
+                        <input type="text" class="form-control" name="type_name">
+                        <div class="error-require validate-message">
+                            Required Field
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function () {
         $(".date-picker").datepicker({
             format: 'MM dd, yyyy',
             autoclose: true
+        });
+        $("body").on("submit", "#type_form", function () {
+            if(validate('type_form')) {
+                var val = $('[name="type_name"]').val();
+                var params = {
+                    'action': 'save_type',
+                    'values': {val: val},
+                    'callback': function (msg) {
+                        $('[name="quote[project_type]"]').append('<option value=' + val + '>' + val + '</option>');
+                        $('[name="quote[project_type]"]').val(val);
+                        $('#type_modal').modal('hide');
+                    }
+                };
+                ajax(params);
+            }
+            return false;
         });
         $("body").on("change", "#template_select", function () {
             var template_no = $(this).val();
@@ -118,7 +163,9 @@
                 values: {company_id: company_id},
                 'callback': function (msg) {
                     var company = JSON.parse(msg);
-                    $("[name='quote[address]']").val(company.address + "\n" + company.city + " " + company.state);
+                    $("[name='quote[address]']").val(company.address);
+                    $("[name='quote[city]']").val(company.city);
+                    $("[name='quote[state]']").val(company.state);
                     $("[name='quote[company_name]']").val(company.company_name);
                     $("[name='quote[phone]']").val(company.phone_number);
                 }

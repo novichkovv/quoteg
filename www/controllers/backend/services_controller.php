@@ -34,6 +34,7 @@ class services_controller extends controller
         if($_GET['id']) {
             $this->render('service', $this->model('services')->getById($_GET['id']));
         }
+        $this->render('units', $this->model('service_unites')->getAll());
         $this->view('services' . DS . 'add');
     }
 }

@@ -29,6 +29,9 @@ class index_controller extends controller
                     'qs.status_name',
                     'DATE(q.create_date)',
                     'CONCAT(u.user_name, " ", u.user_surname)',
+                    'q.company_name',
+                    'q.project_name',
+                    'q.total',
                     'CONCAT("
                     <a class=\"btn btn-outline green change_status\" href=\"#status_modal\" data-toggle=\"modal\" data-id=\"",q.id,"\">
                         Change Status

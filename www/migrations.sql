@@ -97,7 +97,32 @@ CREATE TABLE templates (
   template_name VARCHAR (255) NOT NULL
 );
 
-INSERT INTO `quote`.`templates` (`id`, `template_name`) VALUES ('1', 'Template 1');
+INSERT INTO `templates` (`id`, `template_name`) VALUES ('1', 'Template 1');
 
+INSERT INTO `quote_system_routes` (`route`, `title`, `position`, `icon`) VALUES ('companies', 'Companies', '11', 'icon-pointer');
+INSERT INTO `quote_system_routes` (`route`, `title`, `position`, `hidden`) VALUES ('companies/add', 'Add Company', '12', '1');
 
+ALTER TABLE quotes ADD total DECIMAL(10,2) NULL AFTER status_id;
+ALTER TABLE quotes ADD project_name VARCHAR(255) NULL AFTER status_id;
+ALTER TABLE quotes ADD company_name VARCHAR(255) NULL AFTER status_id;
 
+CREATE TABLE service_unites (
+  id SERIAL PRIMARY KEY,
+  unit_name VARCHAR(255) NOT NULL
+)ENGINE=MyISAM;
+
+INSERT INTO `quote`.`service_unites` (`unit_name`) VALUES ('LS');
+INSERT INTO `quote`.`service_unites` (`unit_name`) VALUES ('hrs');
+INSERT INTO `quote`.`service_unites` (`unit_name`) VALUES ('EA');
+INSERT INTO `quote`.`service_unites` (`unit_name`) VALUES ('sheets');
+INSERT INTO `quote`.`service_unites` (`unit_name`) VALUES ('files');
+INSERT INTO `quote`.`service_unites` (`unit_name`) VALUES ('days');
+INSERT INTO `quote`.`service_unites` (`unit_name`) VALUES ('weeks');
+INSERT INTO `quote`.`service_unites` (`unit_name`) VALUES ('months');
+
+ALTER TABLE services ADD default_unit BIGINT UNSIGNED NOT NULL AFTER rate;
+
+CREATE TABLE project_types (
+  id SERIAL PRIMARY KEY,
+  type_name VARCHAR(255) NOT NULL
+);
