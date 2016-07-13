@@ -124,7 +124,7 @@
                     'action': 'save_type',
                     'values': {val: val},
                     'callback': function (msg) {
-                        $('[name="quote[project_type]"]').append('<option value=' + val + '>' + val + '</option>');
+                        $('[name="quote[project_type]"]').append('<option value="' + val + '" selected>' + val + '</option>');
                         $('[name="quote[project_type]"]').val(val);
                         $('#type_modal').modal('hide');
                     }
