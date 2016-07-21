@@ -111,14 +111,14 @@ CREATE TABLE service_unites (
   unit_name VARCHAR(255) NOT NULL
 )ENGINE=MyISAM;
 
-INSERT INTO `quote`.`service_unites` (`unit_name`) VALUES ('LS');
-INSERT INTO `quote`.`service_unites` (`unit_name`) VALUES ('hrs');
-INSERT INTO `quote`.`service_unites` (`unit_name`) VALUES ('EA');
-INSERT INTO `quote`.`service_unites` (`unit_name`) VALUES ('sheets');
-INSERT INTO `quote`.`service_unites` (`unit_name`) VALUES ('files');
-INSERT INTO `quote`.`service_unites` (`unit_name`) VALUES ('days');
-INSERT INTO `quote`.`service_unites` (`unit_name`) VALUES ('weeks');
-INSERT INTO `quote`.`service_unites` (`unit_name`) VALUES ('months');
+INSERT INTO `service_unites` (`unit_name`) VALUES ('LS');
+INSERT INTO `service_unites` (`unit_name`) VALUES ('hrs');
+INSERT INTO `service_unites` (`unit_name`) VALUES ('EA');
+INSERT INTO `service_unites` (`unit_name`) VALUES ('sheets');
+INSERT INTO `service_unites` (`unit_name`) VALUES ('files');
+INSERT INTO `service_unites` (`unit_name`) VALUES ('days');
+INSERT INTO `service_unites` (`unit_name`) VALUES ('weeks');
+INSERT INTO `service_unites` (`unit_name`) VALUES ('months');
 
 ALTER TABLE services ADD default_unit BIGINT UNSIGNED NOT NULL AFTER rate;
 
@@ -126,3 +126,101 @@ CREATE TABLE project_types (
   id SERIAL PRIMARY KEY,
   type_name VARCHAR(255) NOT NULL
 );
+
+ALTER TABLE companies ADD zip VARCHAR(30) NULL AFTER state;
+select * from companies;
+
+CREATE TABLE states (
+  id SERIAL PRIMARY KEY,
+  full_name VARCHAR (50) NOT NULL,
+  short_name VARCHAR (10) NOT NULL
+);
+
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Alabama', 'AL');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Alaska', 'AK');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Arizona', 'AZ');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Arkansas', 'AR');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('California', 'CA');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Colorado', 'CO');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Connecticut', 'CT');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Delaware', 'DE');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('District of Columbia', 'DC');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Florida', 'FL');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Georgia', 'GA');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Hawaii', 'HI');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Idaho', 'ID');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Illinois', 'IL');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Indiana', 'IN');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Iowa', 'IA');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Kansas', 'KS');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Kentucky', 'KY');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Louisiana', 'LA');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Maine', 'ME');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Montana', 'MT');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Nebraska', 'NE');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Nevada', 'NV');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('New Hampshire', 'NH');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('New Jersey', 'NJ');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('New Mexico', 'NM');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('New York', 'NY');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('North Carolina', 'NC');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('North Dakota', 'ND');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Ohio', 'OH');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Oklahoma', 'OK');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Oregon', 'OR');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Maryland', 'MD');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Massachusetts', 'MA');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Michigan', 'MI');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Minnesota', 'MN');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Mississippi', 'MS');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Missouri', 'MO');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Pennsylvania', 'PA');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Rhode Island', 'RI');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('South Carolina', 'SC');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('South Dakota', 'SD');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Tennessee', 'TN');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Texas', 'TX');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Utah', 'UT');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Vermont', 'VT');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Virginia', 'VA');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Washington', 'WA');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('West Virginia', 'WV');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Wisconsin', 'WI');
+INSERT INTO `states` (`full_name`, `short_name`) VALUES ('Wyoming', 'WY');
+
+ALTER TABLE quotes ADD quote_date DATE NULL;
+ALTER TABLE quotes ADD address VARCHAR(255) NULL;
+ALTER TABLE quotes ADD city VARCHAR(255) NULL;
+ALTER TABLE quotes ADD state VARCHAR(255) NULL;
+ALTER TABLE quotes ADD zip VARCHAR(255) NULL;
+ALTER TABLE quotes ADD phone_number VARCHAR(255) NULL;
+ALTER TABLE quotes ADD fax VARCHAR(255) NULL;
+ALTER TABLE quotes ADD mobile VARCHAR(255) NULL;
+ALTER TABLE quotes ADD attn VARCHAR(255) NULL;
+ALTER TABLE quotes ADD client_job_no VARCHAR(255) NULL;
+ALTER TABLE quotes ADD project_type VARCHAR(255) NULL;
+ALTER TABLE quotes ADD po_no VARCHAR(255) NULL;
+ALTER TABLE quotes ADD hourly_basis VARCHAR(255) NULL;
+ALTER TABLE quotes ADD expiration_date VARCHAR(255) NULL;
+
+CREATE TABLE `quote_services` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `quote_id` bigint(20) unsigned NOT NULL,
+  `service_name` varchar(255) NOT NULL,
+  `scope` varchar(255) DEFAULT NULL,
+  `description` text,
+  `rate` decimal(8,2) DEFAULT NULL,
+  `unit` VARCHAR(30) NOT NULL,
+  `qty` INT NOT NULL DEFAULT 0,
+  `total` decimal(8,2) DEFAULT NULL,
+  `create_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+ALTER TABLE quotes ADD revision TINYINT NOT NULL DEFAULT 0;
+
+INSERT INTO `quote_system_routes` (`route`, `title`, `position`, `icon`) VALUES ('project_types', 'Project Types', '13', 'icon-notebook');
+INSERT INTO `quote_system_routes` (`route`, `title`, `position`, `hidden`, `icon`) VALUES ('project_types/add', 'Add Type', '14', '1', 'icon-notebook');
+
+

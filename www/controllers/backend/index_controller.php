@@ -37,6 +37,7 @@ class index_controller extends controller
                         Change Status
                     </a>
                     <button type=\"button\" class=\"btn btn-outline blue download\"   data-id=\"",q.id,"\"><i class=\"fa fa-download\"></i> Download</button>
+                    <a href=\"' . SITE_DIR . 'generate/?id=", q.id, "\" class=\"btn btn-outline blue\"><i class=\"fa fa-edit\"></i></a>
                     ")'
                 ];
                 $params['join']['quote_statuses'] = [

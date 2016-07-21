@@ -13,7 +13,7 @@
                 Date *
             </label>
             <div class="col-md-9">
-                <input type="text" data-require="1" name="quote[date]" class="form-control date-picker" value="<?php echo date('F d, Y'); ?>">
+                <input type="text" data-require="1" name="quote[date]" class="form-control date-picker" value="<?php echo $quote['quote_date'] ? $quote['quote_date'] : date('Y-m-d'); ?>">
                 <div class="error-require validate-message">Required Field</div>
             </div>
         </div>
@@ -49,7 +49,24 @@
                 State *
             </label>
             <div class="col-md-9">
-                <input type="text" data-require="1" name="quote[state]" class="form-control" value="<?php echo $comp['state']; ?>">
+                <select class="form-control" name="quote[state]" data-require="1">
+                    <?php foreach ($states as $state): ?>
+                        <option value="<?php echo $state['short_name']; ?>"
+                            <?php if ($comp['state'] == $state['short_name']): ?>
+                                selected
+                            <?php endif; ?>><?php echo $state['short_name']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+<!--                <input type="text" data-require="1" name="quote[state]" class="form-control" value="--><?php //echo $comp['state']; ?><!--">-->
+                <div class="error-require validate-message">Required Field</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                ZIP code
+            </label>
+            <div class="col-md-9">
+                <input type="text" data-require="1" name="quote[zip]" class="form-control" value="<?php echo $comp['zip']; ?>">
                 <div class="error-require validate-message">Required Field</div>
             </div>
         </div>
@@ -58,7 +75,7 @@
                 Phone
             </label>
             <div class="col-md-9">
-                <input type="text" name="quote[phone]" class="form-control" value="<?php echo $comp['phone_number']; ?>">
+                <input type="text" name="quote[phone]" class="form-control phone-input" value="<?php echo $comp['phone_number']; ?>">
                 <div class="error-require validate-message">Required Field</div>
             </div>
         </div>
@@ -67,7 +84,7 @@
                 Fax
             </label>
             <div class="col-md-9">
-                <input type="text" name="quote[fax]" class="form-control" value="">
+                <input type="text" name="quote[fax]" class="form-control phone-input" value="<?php echo $quote['fax']; ?>">
                 <div class="error-require validate-message">Required Field</div>
             </div>
         </div>
@@ -76,7 +93,7 @@
                 Mobile
             </label>
             <div class="col-md-9">
-                <input type="text" name="quote[mobile]" class="form-control" value="">
+                <input type="text" name="quote[mobile]" class="form-control phone-input" value="<?php echo $quote['mobile']; ?>">
                 <div class="error-require validate-message">Required Field</div>
             </div>
         </div>
@@ -85,7 +102,7 @@
                 Attn
             </label>
             <div class="col-md-9">
-                <input type="text" name="quote[attn]" class="form-control" value="">
+                <input type="text" name="quote[attn]" class="form-control" value="<?php echo $quote['attn']; ?>">
                 <div class="error-require validate-message">Required Field</div>
             </div>
         </div>
@@ -94,7 +111,7 @@
                 Client Job #
             </label>
             <div class="col-md-9">
-                <input type="text" name="quote[client_job_no]" class="form-control" value="">
+                <input type="text" name="quote[client_job_no]" class="form-control" value="<?php echo $quote['client_job_no']; ?>">
                 <div class="error-require validate-message">Required Field</div>
             </div>
         </div>
@@ -103,7 +120,7 @@
                 Project Name
             </label>
             <div class="col-md-9">
-                <input type="text" name="quote[project_name]" class="form-control" value="">
+                <input type="text" name="quote[project_name]" class="form-control" value="<?php echo $quote['project_name']; ?>">
                 <div class="error-require validate-message">Required Field</div>
             </div>
         </div>
@@ -115,7 +132,10 @@
                 <select class="form-control" name="quote[project_type]">
                     <?php if ($types): ?>
                         <?php foreach ($types as $type): ?>
-                            <option value="<?php echo addslashes($type['type_name']); ?>"><?php echo $type['type_name']; ?></option>
+                            <option value="<?php echo addslashes($type['type_name']); ?>"
+                                <?php if ($quote['project_type'] == $type['type_name']): ?>
+                                    selected
+                                <?php endif; ?>><?php echo $type['type_name']; ?></option>
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </select>
@@ -130,25 +150,27 @@
                 Expiration Date
             </label>
             <div class="col-md-9">
-                <input type="text" name="quote[expiration_date]" class="form-control date-picker" value="<?php echo date('F d, Y', strtotime(date('Y-m-d') . ' + 30 day')); ?>">
+                <input type="text" name="quote[expiration_date]" class="form-control date-picker" value="<?php echo $quote['expiration_date'] ? $quote['expiration_date'] : date('Y-m-d', strtotime(date('Y-m-d') . ' + 30 day')); ?>">
                 <div class="error-require validate-message">Required Field</div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="control-label col-md-3">
-                PO #
-            </label>
-            <div class="col-md-9">
-                <input type="text" name="quote[po_no]" class="form-control" value="">
-                <div class="error-require validate-message">Required Field</div>
-            </div>
-        </div>
+<!--        <div class="form-group">-->
+<!--            <label class="control-label col-md-3">-->
+<!--                PO #-->
+<!--            </label>-->
+<!--            <div class="col-md-9">-->
+<!--                <input type="text" name="quote[po_no]" class="form-control" value="--><?php //echo $quote['po_no']; ?><!--">-->
+<!--                <div class="error-require validate-message">Required Field</div>-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="form-group">
             <label class="control-label col-md-3" style="padding-top: 0 !important;">
                 Hourly Basis term
             </label>
             <div class="col-md-9">
-                <input type="checkbox" name="quote[hourly_basis]" class="form-control" value="1" checked>
+                <input type="checkbox" name="quote[hourly_basis]" class="form-control" value="1" <?php if (!$quote || $quote['hourly_basis'] == 1): ?>
+                    checked
+                <?php endif; ?>>
                 <div class="error-require validate-message">Required Field</div>
             </div>
         </div>

@@ -28,6 +28,9 @@ class companies_controller extends controller
             $company['id'] = $this->model('companies')->insert($company);
             $contact = $_POST['contact'];
             $contact['companyID'] = $company['id'];
+            if($cont = $this->model('companies_contacts')->getByField('companyId', $company['id'])) {
+                $contact['id'] = $cont['id'];
+            }
             $this->model('companies_contacts')->insert($contact);
             header("Location: " . SITE_DIR . "companies/");
             exit;
@@ -36,6 +39,7 @@ class companies_controller extends controller
             $this->render('company', $this->model('companies')->getById($_GET['id']));
             $this->render('contact', $this->model('companies_contacts')->getByField('companyId', $_GET['id']));
         }
+        $this->render('states', $this->model('states')->getAll('short_name'));
         $this->view('companies' . DS . 'add');
     }
 }

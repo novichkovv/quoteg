@@ -46,7 +46,15 @@
                     <div class="form-group">
                         <label class="control-label col-md-5">State *</label>
                         <div class="col-md-7">
-                            <input type="text" name="company[state]" autocomplete="off" class="form-control"  data-require="1" value="<?php echo $company['state']; ?>">
+                            <select class="form-control" name="company[state]" data-require="1">
+                                <?php foreach ($states as $state): ?>
+                                    <option value="<?php echo $state['short_name']; ?>"
+                                        <?php if ($company['state'] == $state['short_name']): ?>
+                                            selected
+                                        <?php endif; ?>><?php echo $state['short_name']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+<!--                            <input type="text" name="" autocomplete="off" class="form-control"  data-require="1" value="--><?php //echo $company['state']; ?><!--">-->
 
                             <div class="error-require validate-message">
                                 Required Field
@@ -56,7 +64,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-5">Phone Number </label>
                         <div class="col-md-7">
-                            <input type="text" name="company[phone_number]" autocomplete="off" class="form-control" value="<?php echo $company['phone_number']; ?>">
+                            <input type="text" name="company[phone_number]" autocomplete="off" class="form-control phone-input" value="<?php echo $company['phone_number']; ?>">
                             <div class="error-require validate-message">
                                 Required Field
                             </div>

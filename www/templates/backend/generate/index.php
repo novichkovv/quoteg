@@ -3,7 +3,10 @@
 </h3>
 <div class="row">
     <div class="col-md-8">
-        <form id="filter-form" action="" method="post" target="_blank">
+        <form id="filter-form" action="" method="post"
+            <?php if ($_GET['id']): ?>
+                target="_blank"
+            <?php endif; ?>>
             <div class="portlet light bordered">
                 <div class="portlet-title">
                     <div class="caption font-dark">
@@ -52,7 +55,13 @@
                     </div>
                     <div>
                         <h3 class="text-center">Services</h3>
-                        <div id="services"></div>
+                        <div id="services">
+                            <?php if ($quote['services']): ?>
+                                <?php foreach ($quote['services'] as $count => $service): ?>
+                                    <?php require(TEMPLATE_DIR . 'generate' . DS . 'ajax' . DS . 'service.php'); ?>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
                         <div class="form-group" id="service_field">
                             <label class="control-label col-md-3">
                                 Service
@@ -73,6 +82,10 @@
                         </div>
                     </div>
                     <br><br><br>
+                    <input type="hidden" id="revision" name="quote[revision]" value="<?php echo $quote['revision'] ? 1 : 0; ?>">
+                    <?php if ($quote['id']): ?>
+                        <input type="hidden" name="quote[id]" value="<?php echo $quote['id']; ?>">
+                    <?php endif; ?>
                     <div class="row">
                         <div class="col-md-offset-3">
                             <button type="submit" class="btn btn-outline btn-lg blue" name="generate_btn">
@@ -114,9 +127,14 @@
     $ = jQuery.noConflict();
     $(document).ready(function () {
         $(".date-picker").datepicker({
-            format: 'MM dd, yyyy',
+            format: 'yyyy-mm-dd',
             autoclose: true
         });
+        if(window.location.hash == '#generate') {
+            window.location.hash = '';
+            $("[name='generate_btn']").click();
+            $("#revision").val(1);
+        }
         $("body").on("submit", "#type_form", function () {
             if(validate('type_form')) {
                 var val = $('[name="type_name"]').val();
@@ -171,6 +189,9 @@
                 }
             };
             ajax(params);
+        });
+        $("body").on("click", ".remove_service", function () {
+            $(this).closest('.service').remove();
         });
         $("body").on('click', "#add_service", function() {
             if(validate("service_field")) {

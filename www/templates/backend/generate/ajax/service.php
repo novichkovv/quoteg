@@ -1,4 +1,17 @@
 <div class="service row">
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-md-3 control-label">
+                    Scope
+                </label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" name="quote[services][<?php echo $count; ?>][scope]" value="<?php echo $service['scope']; ?>">
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col-md-3">
         <div class="form-group">
             <label>Name</label>
@@ -41,6 +54,7 @@
     <div class="col-md-1">
         <br>
         <button type="button" class="btn btn-outline red btn-icon remove_service"><i class="fa fa-trash"></i></button>
-        </div>
     </div>
-<br>
+    <hr>
+</div>
+
