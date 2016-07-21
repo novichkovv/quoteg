@@ -103,6 +103,12 @@ class generate_controller extends controller
                 $comp[$k] = $quote[$k];
             }
             $quote['services'] = $this->model('quote_services')->getByField('quote_id', $quote['id'], true);
+            $quote['phone_number'] = strtr($quote['phone_number'], [
+                ' ' => '',
+                '(' => '',
+                ')' => '-',
+                '.' => '-'
+            ]);
             $this->render('quote', $quote);
         }
         $this->render('comp', $comp);
