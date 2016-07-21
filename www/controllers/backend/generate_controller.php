@@ -103,14 +103,15 @@ class generate_controller extends controller
                 $comp[$k] = $quote[$k];
             }
             $quote['services'] = $this->model('quote_services')->getByField('quote_id', $quote['id'], true);
-            $quote['phone_number'] = strtr($quote['phone_number'], [
-                ' ' => '',
-                '(' => '',
-                ')' => '-',
-                '.' => '-'
-            ]);
+
             $this->render('quote', $quote);
         }
+        $comp['phone_number'] = strtr($comp['phone_number'], [
+            ' ' => '',
+            '(' => '',
+            ')' => '-',
+            '.' => '-'
+        ]);
         $this->render('comp', $comp);
         $this->render('types', $this->model('project_types')->getAll());
         $this->render('services', $this->model('services')->getAll());
@@ -139,6 +140,12 @@ class generate_controller extends controller
                 } else {
                     $comp = $this->model('companies')->getCompany($companies[array_keys($companies)[0]]['id']);
                 }
+                $comp['phone_number'] = strtr($comp['phone_number'], [
+                    ' ' => '',
+                    '(' => '',
+                    ')' => '-',
+                    '.' => '-'
+                ]);
                 $this->render('comp', $comp);
                 $this->render('types', $this->model('project_types')->getAll());
                 $this->render('services', $this->model('services')->getAll());
