@@ -171,7 +171,7 @@ class generate_controller extends controller
                     $this->model('quote_services')->insert($v);
                 }
                 $quote['services'] = [];
-                foreach ($this->model('quote_services')->getByField('quote_id', $quote['id'], true) as $k => $service) {
+                foreach ($this->model('quote_services')->getByField('quote_id', $quote['id'], true, 'id') as $k => $service) {
                     $quote['services'][$service['scope']]['services'][] = $service;
                     if(!$quote['services'][$service['scope']]['scope_total']) {
                         $quote['services'][$service['scope']]['scope_total'] = $service['total'];
