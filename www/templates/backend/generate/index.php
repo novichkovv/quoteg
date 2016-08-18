@@ -3,7 +3,7 @@
 </h3>
 <div class="row">
     <div class="col-md-8">
-        <form id="filter-form" action="" method="post"
+        <form id="filter-form" action="<?php if ($_GET['id']) echo SITE_DIR . 'generate/pdf/?id=' . $_GET['id'] ?>" method="post"
             <?php if ($_GET['id']): ?>
                 target="_blank"
             <?php endif; ?>>

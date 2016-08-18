@@ -55,7 +55,7 @@ class generate_controller extends controller
                     $this->model('quote_services')->insert($v);
                 }
                 $quote['services'] = [];
-                foreach ($this->model('quote_services')->getByField('quote_id', $quote['id'], true) as $k => $service) {
+                foreach ($this->model('quote_services')->getByField('quote_id', $quote['id'], true, 'id') as $k => $service) {
                     $quote['services'][$service['scope']]['services'][] = $service;
                     if(!$quote['services'][$service['scope']]['scope_total']) {
                         $quote['services'][$service['scope']]['scope_total'] = $service['total'];
@@ -125,7 +125,95 @@ class generate_controller extends controller
 
     public function pdf()
     {
+        if(isset($_POST['generate_btn'])) {
+            $quote = $_POST['quote'];
+            $total = 0;
+            if($quote['services']) {
+                foreach ($quote['services'] as $k => $service) {
+                    $service['total'] = $service['rate'] * $service['qty'];
+                    $total += $service['total'];
+                    $quote['services'][$k] = $service;
+                }
+                $this->render('total', $total);
+            }
+            $row = [
+                'creator' => registry::get('user')['id'],
+                'create_date' => date('Y-m-d H:i:s'),
+                'company_name' => $quote['company_name'],
+                'project_name' => $quote['project_name'],
+                'total' => $total,
+                'quote_date' => $quote['date'],
+                'address' => $quote['address'],
+                'city' => $quote['city'],
+                'state' => $quote['state'],
+                'zip' => $quote['zip'],
+                'phone_number' => $quote['phone'],
+                'fax' => $quote['fax'],
+                'mobile' => $quote['mobile'],
+                'direct' => $quote['direct'],
+                'attn' => $quote['attn'],
+                'client_job_no' => $quote['client_job_no'],
+                'project_type' => $quote['project_type'],
+                'po_no' => $quote['po_no'],
+                'expiration_date' => $quote['expiration_date'],
+                'hourly_basis' => $quote['hourly_basis']
+            ];
+            if($quote['id']) {
+                $row['id'] = $quote['id'];
+                unset($quote['create_date']);
+            }
+            $quote['id'] = $this->model('quotes')->insert($row);
+            $this->model('quote_services')->delete('quote_id', $quote['id']);
+            if($quote['services']) {
+                foreach ($quote['services'] as $v) {
+                    $v['quote_id'] = $quote['id'];
+                    unset($v['id']);
+                    $this->model('quote_services')->insert($v);
+                }
+                $quote['services'] = [];
+                foreach ($this->model('quote_services')->getByField('quote_id', $quote['id'], true) as $k => $service) {
+                    $quote['services'][$service['scope']]['services'][] = $service;
+                    if(!$quote['services'][$service['scope']]['scope_total']) {
+                        $quote['services'][$service['scope']]['scope_total'] = $service['total'];
+                    } else {
+                        $quote['services'][$service['scope']]['scope_total'] += $service['total'];
+                    }
+                }
+            }
 
+            $company = [];
+            $company['id'] = $_POST['company_id'];
+            $company['company_name'] = $quote['company_name'];
+            $company['address'] = $quote['address'];
+            $company['city'] = $quote['city'];
+            $company['state'] = $quote['state'];
+            $company['zip'] = $quote['zip'];
+            $company['phone_number'] = $quote['phone'];
+            $this->model('companies')->insert($company);
+            if(!$_POST['quote']['id']) {
+                header('Location: ' . SITE_DIR . 'generate/?id=' . $quote['id'] . '#generate');
+                exit;
+            } else {
+                if(!$quote['revision']) {
+                    $this->model('quotes')->insert(['id' => $quote['id'], 'revision' => 1]);
+                }
+            }
+            $this->render('quote', $quote);
+            $this->generate($_POST['template_no'], $quote['id'], $total, true);
+            header('Location: ' . SITE_DIR . 'generate/pdf/?id=' . $_GET['id']);
+            exit;
+        } else {
+            $contract_file = ROOT_DIR . 'uploads' . DS . $_GET['id'] . '.pdf';
+            header("Content-Disposition:inline;filename=Proposal.pdf");
+            header("Content-type:application/pdf");
+            readfile($contract_file);
+            exit;
+        }
+    }
+
+    public function pdf_na()
+    {
+        $this->pdf();
     }
 
     public function index_ajax()
@@ -183,7 +271,7 @@ class generate_controller extends controller
         }
     }
 
-    private function generate($template, $id)
+    private function generate($template, $id, $no_output = false)
     {
         $pdf = $this->tools()->pdf('BLANK', 'A4', 0,0,8,8,35,30);
         $folder = 'generate' . DS . 'pdf' . DS . $template . DS;
@@ -195,10 +283,12 @@ class generate_controller extends controller
         $pdf->writeHTML($content, 2);
         $contract_file = ROOT_DIR . 'uploads' . DS . $id . '.pdf';
         $pdf->Output($contract_file, 'F');
-        header("Content-Disposition:inline;filename=quote.pdf");
-        header("Content-type:application/pdf");
+        if($no_output) {
+            header("Content-Disposition:inline;filename=Proposal.pdf");
+            header("Content-type:application/pdf");
+            readfile($contract_file);
+            exit;
+        }
 
-        readfile($contract_file);
-        exit;
     }
 }
