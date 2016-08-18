@@ -99,6 +99,15 @@
         </div>
         <div class="form-group">
             <label class="control-label col-md-3">
+                Direct
+            </label>
+            <div class="col-md-9">
+                <input type="text" name="quote[direct]" class="form-control phone-input" value="<?php echo $quote['direct']; ?>">
+                <div class="error-require validate-message">Required Field</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
                 Attn
             </label>
             <div class="col-md-9">

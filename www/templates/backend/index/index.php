@@ -46,7 +46,7 @@
                             <td><input type="text" class="form-control filter-field" data-sign="=" name="q.company_name" placeholder="search"></td>
                             <td><input type="text" class="form-control filter-field " data-sign="=" name="q.project_name" placeholder="search"></td>
                             <td></td>
-
+                            <td></td>
                             <td></td>
                         </tr>
                         <tr>
@@ -57,6 +57,7 @@
                             <th>Company Name</th>
                             <th>Project Name</th>
                             <th>Amount</th>
+                            <th>Follow Up</th>
                             <th>Action</th>
                         </tr>
                         </thead>

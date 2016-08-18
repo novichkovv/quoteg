@@ -32,6 +32,7 @@ class index_controller extends controller
                     'q.company_name',
                     'q.project_name',
                     'q.total',
+                    'IF(q.followup_date, q.followup_date, " - ")',
                     'CONCAT("
                     <a class=\"btn btn-outline green change_status\" href=\"#status_modal\" data-toggle=\"modal\" data-id=\"",q.id,"\">
                         Change Status
@@ -60,6 +61,9 @@ class index_controller extends controller
                 break;
 
             case "change_status":
+                if($_POST['status']['status_id'] == 5) {
+                    $_POST['status']['followup_date'] = date('Y-m-d');
+                }
                 $this->model('quotes')->insert($_POST['status']);
                 echo json_encode(array('status' => 1));
                 exit;

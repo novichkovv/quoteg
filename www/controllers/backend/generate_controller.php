@@ -34,6 +34,7 @@ class generate_controller extends controller
                 'phone_number' => $quote['phone'],
                 'fax' => $quote['fax'],
                 'mobile' => $quote['mobile'],
+                'direct' => $quote['direct'],
                 'attn' => $quote['attn'],
                 'client_job_no' => $quote['client_job_no'],
                 'project_type' => $quote['project_type'],
@@ -70,6 +71,7 @@ class generate_controller extends controller
             $company['address'] = $quote['address'];
             $company['city'] = $quote['city'];
             $company['state'] = $quote['state'];
+            $company['zip'] = $quote['zip'];
             $company['phone_number'] = $quote['phone'];
             $this->model('companies')->insert($company);
             if(!$_POST['quote']['id']) {
@@ -119,6 +121,11 @@ class generate_controller extends controller
         $this->render('companies', $companies);
         $this->render('states', $this->model('states')->getAll('short_name'));
         $this->view('generate' . DS . 'index');
+    }
+
+    public function pdf()
+    {
+
     }
 
     public function index_ajax()
@@ -188,7 +195,9 @@ class generate_controller extends controller
         $pdf->writeHTML($content, 2);
         $contract_file = ROOT_DIR . 'uploads' . DS . $id . '.pdf';
         $pdf->Output($contract_file, 'F');
+        header("Content-Disposition:inline;filename=quote.pdf");
         header("Content-type:application/pdf");
+
         readfile($contract_file);
         exit;
     }

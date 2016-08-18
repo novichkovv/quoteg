@@ -62,6 +62,15 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label col-md-5">Zip</label>
+                        <div class="col-md-7">
+                            <input type="text" name="company[zip]" autocomplete="off" class="form-control"  value="<?php echo $company['zip']; ?>">
+                            <div class="error-require validate-message">
+                                Required Field
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label col-md-5">Phone Number </label>
                         <div class="col-md-7">
                             <input type="text" name="company[phone_number]" autocomplete="off" class="form-control phone-input" value="<?php echo $company['phone_number']; ?>">

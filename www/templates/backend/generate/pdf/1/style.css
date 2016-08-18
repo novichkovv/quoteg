@@ -69,8 +69,8 @@
 }
 .table td {
     border-bottom: 1px solid #666;
-    border-spacing: 0px;
-    padding-right: 10px; padding-left: 10px;
+    border-spacing: 0;
+    padding-right: 15px; padding-left: 15px;
 }
 .table th {
     border-bottom: 2px solid black;

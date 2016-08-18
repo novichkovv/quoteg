@@ -223,4 +223,7 @@ ALTER TABLE quotes ADD revision TINYINT NOT NULL DEFAULT 0;
 INSERT INTO `quote_system_routes` (`route`, `title`, `position`, `icon`) VALUES ('project_types', 'Project Types', '13', 'icon-notebook');
 INSERT INTO `quote_system_routes` (`route`, `title`, `position`, `hidden`, `icon`) VALUES ('project_types/add', 'Add Type', '14', '1', 'icon-notebook');
 
+ALTER TABLE quotes ADD direct VARCHAR(50) NULL AFTER mobile;
+INSERT INTO `quote`.`quote_statuses` (`status_name`) VALUES ('follow up');
+ALTER TABLE quotes ADD followup_date VARCHAR(50) NULL AFTER direct;
 

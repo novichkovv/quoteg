@@ -44,6 +44,16 @@
                     </div>
                 </div>
             <?php endif; ?>
+            <?php if ($quote['direct']): ?>
+                <div class="row">
+                    <div class="col50">
+                        Direct:
+                    </div>
+                    <div class="col50">
+                        <?php echo $quote['direct']; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
     <br>
@@ -209,6 +219,7 @@
     </tr>
 </table>
 <pagebreak />
+<?php /*
 <h3>TERMS OF PROPOSAL</h3>
 1. This proposal is valid for 30 days from the date of execution and delivery by VIATechnik to the Client, unless
 otherwise noted.<br>
@@ -239,6 +250,7 @@ our services. If the Scope of Work contained herein meets with your approval, ki
 by signing the attached proposal form, and returning electronically.<br><br>
 If you have any questions please do not hesitate to call our office at your convenience. Thank you for this opportunity.
 <pagebreak />
+*/ ?>
 <h3 class="text-center">
     2016 VIATECHNIK ENGINEERING SERVICES BILLING RATE SCHEDULE
 </h3>
