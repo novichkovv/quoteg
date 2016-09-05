@@ -1,29 +1,38 @@
-<hr style="border-top: 3px solid grey;">
+<div style="border-top: 4px solid #919191; margin-bottom: 10px;"></div>
 <div id="header">
     <div class="row">
-        <div class="col60">
+        <div class="col65">
             <div class="row">
-                <h4><?php echo $quote['company_name']; ?></h4>
+                <div class="col-60">
+                    <?php echo $quote['company_name']; ?>
+                </div>
             </div>
             <div class="row">
-                <div class="col30">
-                    Address:
-                </div>
-                <div class="col55">
+                <div class="col60">
                     <?php echo $quote['address']; ?><br>
                     <?php echo $quote['zip']; ?> <?php echo $quote['city']; ?>, <?php echo $quote['state']; ?>
                 </div>
             </div>
         </div>
-        <div class="col30">
+        <div class="col35">
             <div class="row">
                 <div class="col50">
-                    Phone:
+                    Main Phone:
                 </div>
                 <div class="col50">
                     <?php echo $quote['phone']; ?>
                 </div>
             </div>
+            <?php if ($quote['direct']): ?>
+                <div class="row">
+                    <div class="col50">
+                        Direct Phone:
+                    </div>
+                    <div class="col50">
+                        <?php echo $quote['direct']; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
             <?php if ($quote['fax']): ?>
                 <div class="row">
                     <div class="col50">
@@ -44,28 +53,17 @@
                     </div>
                 </div>
             <?php endif; ?>
-            <?php if ($quote['direct']): ?>
-                <div class="row">
-                    <div class="col50">
-                        Direct:
-                    </div>
-                    <div class="col50">
-                        <?php echo $quote['direct']; ?>
-                    </div>
-                </div>
-            <?php endif; ?>
+
         </div>
     </div>
-    <br>
     <div class="row">
-        <div class="col60">
+        <div class="col65">
             <div class="row">
-                <div class="col30">
+                <div class="col25">
                     Attn:
                     <br>
-                    <br>
                 </div>
-                <div class="col60">
+                <div class="col650">
                     <?php echo $quote['attn']; ?>
                 </div>
             </div>
@@ -73,36 +71,36 @@
     </div>
     <br>
     <div class="row">
-        <div class="col60">
+        <div class="col65">
             <div class="row">
-                <div class="col30">
+                <div class="col25">
                     Quote #:
                 </div>
-                <div class="col70">
+                <div class="col65">
                     <?php echo $quote['id']; ?><?php if ($quote['revision']) echo 'R'; ?>
                 </div>
             </div>
             <?php if ($quote['client_job_no']): ?>
                 <div class="row">
-                    <div class="col30">
+                    <div class="col25">
                         Client Job #:
                     </div>
-                    <div class="col70">
+                    <div class="col65">
                         <?php echo $quote['client_job_no'] ? $quote['client_job_no'] : 'N/A'; ?>
                     </div>
                 </div>
             <?php endif; ?>
             <div class="row">
-                <div class="col30">
+                <div class="col25">
                     Project Name:
                 </div>
-                <div class="col70">
+                <div class="col65">
                     <?php echo $quote['project_name']; ?><br>
                     <b><?php echo $quote['project_type']; ?></b>
                 </div>
             </div>
         </div>
-        <div class="col30">
+        <div class="col35">
             <div class="row">
                 <div class="col50">
                     Expiration Date:
@@ -132,9 +130,9 @@
         <table style="width: 100%" class="table">
             <thead>
             <tr>
-                <th>Service</th>
-                <th>Description</th>
-                <th>Estimated Qty</th>
+                <th style="width: 16%;">Service</th>
+                <th style="width: 37%;">Description</th>
+                <th style="width: 13%;">Estimated Qty</th>
                 <th>Rate</th>
                 <th>Estimated Total</th>
             </tr>
@@ -143,23 +141,24 @@
 
             <?php if ($quote['services']): ?>
                 <?php foreach ($quote['services'] as $scope_name => $scope): ?>
+                    <tr><td colspan="5" style="border: none; height: 10px;"></td> </tr>
                     <tr>
 <!--                        --><?php //if ($scope_name): ?>
-                            <td colspan="4" style="border-top: 1px solid grey; background-color: #eee;">
+                            <td colspan="4" style="border-top: 1px solid #494949; background-color: #d1d1d1;">
                                 <b><?php echo $scope_name; ?></b>
                             </td>
-                            <td align="right" style="border-top: 1px solid grey; background-color: #eee;">
+                            <td align="right" style="border-top: 1px solid #494949; background-color: #d1d1d1;">
                                 <b>$<?php echo number_format($scope['scope_total'], 2); ?></b>
                             </td>
 <!--                        --><?php //endif; ?>
                     </tr>
                     <?php foreach ($scope['services'] as $service): ?>
                         <tr>
-                            <td><?php echo $service['service_name']; ?></td>
-                            <td><?php echo $service['description']; ?></td>
-                            <td><?php echo number_format($service['qty'], 2); ?> <?php echo $service['unit']; ?></td>
-                            <td>$<?php echo number_format($service['rate'], 2); ?></td>
-                            <td>$<?php echo number_format($service['total'], 2); ?></td>
+                            <td valign="bottom"><?php echo $service['service_name']; ?></td>
+                            <td valign="bottom"><?php echo $service['description']; ?></td>
+                            <td valign="bottom"><?php echo number_format($service['qty'], 2); ?> <?php echo $service['unit']; ?></td>
+                            <td valign="bottom">$<?php echo number_format($service['rate'], 2); ?></td>
+                            <td valign="bottom">$<?php echo number_format($service['total'], 2); ?></td>
                         </tr>
                     <?php endforeach; ?>
 

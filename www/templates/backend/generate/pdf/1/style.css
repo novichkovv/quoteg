@@ -1,5 +1,6 @@
-* {
-    font-family: "Myriad Pro", "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+body {
+    font-family: "Calibri";
+    font-size: 10px;
 }
 .col10 {
     width: 10%;
@@ -21,6 +22,10 @@
     width: 30%;
     float: left;
 }
+.col35 {
+    width: 35%;
+    float: left;
+}
 .col40 {
     width: 40%;
     float: left;
@@ -35,6 +40,10 @@
 }
 .col60 {
     width: 60%;
+    float: left;
+}
+.col65 {
+    width: 65%;
     float: left;
 }
 .offset10 {
@@ -65,12 +74,13 @@
     clear: both;
 }
 #header {
-    font-size: 13px;
+    /*font-size: 13px;*/
 }
 .table td {
     border-bottom: 1px solid #666;
     border-spacing: 0;
-    padding-right: 15px; padding-left: 15px;
+    padding-right: 15px;
+    /*padding-left: 15px;*/
 }
 .table th {
     border-bottom: 2px solid black;
@@ -82,3 +92,4 @@
 .t1 td {
     text-align: center;
 }
+
