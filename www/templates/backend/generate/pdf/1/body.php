@@ -53,9 +53,9 @@
                     </div>
                 </div>
             <?php endif; ?>
-
         </div>
     </div>
+    <br>
     <div class="row">
         <div class="col65">
             <div class="row">
