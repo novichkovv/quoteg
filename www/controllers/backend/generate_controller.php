@@ -273,7 +273,7 @@ class generate_controller extends controller
 
     private function generate($template, $id, $no_output = false)
     {
-        $pdf = $this->tools()->pdf('BLANK', 'A4', 10,0,20,40,35,30);
+        $pdf = $this->tools()->pdf('BLANK', 'A4', 10,0,30,30,35,30);
         $folder = 'generate' . DS . 'pdf' . DS . $template . DS;
         $header = $this->fetch($folder . 'header');
         $pdf->SetHTMLHeader($header);

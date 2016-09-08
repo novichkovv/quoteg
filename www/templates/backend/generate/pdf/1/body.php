@@ -127,7 +127,7 @@
         </div>
     </div>
     <div class="row">
-        <table style="width: 100%" class="table">
+        <table style="width: 100%" cellspacing="5" class="table">
             <thead>
             <tr>
                 <th style="width: 16%;">Service</th>
@@ -143,14 +143,12 @@
                 <?php foreach ($quote['services'] as $scope_name => $scope): ?>
                     <tr><td colspan="5" style="border: none; height: 10px;"></td> </tr>
                     <tr>
-<!--                        --><?php //if ($scope_name): ?>
                             <td colspan="4" style="border-top: 1px solid #494949; background-color: #d1d1d1;">
                                 <b><?php echo $scope_name; ?></b>
                             </td>
                             <td align="right" style="border-top: 1px solid #494949; background-color: #d1d1d1;">
                                 <b>$<?php echo number_format($scope['scope_total'], 2); ?></b>
                             </td>
-<!--                        --><?php //endif; ?>
                     </tr>
                     <?php foreach ($scope['services'] as $service): ?>
                         <tr>
@@ -178,7 +176,7 @@
 </div>
 <br><br>
 
-<span style="font-size: 12px;">
+<span style="font-size: 10px;">
     <i>This Price Quotation is made subject to the Terms and Conditions of Service, which are attached hereto and made a part hereof. Based on <?php echo date('Y'); ?>
         VIATechnik Engineering Services Billing Rate Schedule hourly rates and our estimated time to complete this project. <?php if ($quote['hourly_basis']): ?>Invoices will be based on actual hours worked, billed on a monthly basis.<?php endif; ?>
         VIATechnik accepts no responsibility and will not be held liable for losses either financial, or consequential, or otherwise from the use or lack of use of
@@ -332,7 +330,7 @@ If you have any questions please do not hesitate to call our office at your conv
 <h3 class="text-center">
     TERMS AND CONDITIONS OF SERVICE
 </h3>
-<div class="row" style="font-size: 11px;">
+<div class="row" style="font-size: 9px;">
     <span style="text-decoration: underline;">1. PROPOSAL.</span>  Description of the services to be rendered by VIATechnik (“Services”) is set forth in the price quotation and terms of proposal (“Proposal”) attached to
     these Terms and Conditions of Service (this “Agreement”).  The Proposal shall remain valid for a period of 30 days from execution and delivery by VIATechnik to the Client.   
     “Client” refers to the person or the entity identified as the Client on the attached Proposal.<br><br><span style="text-decoration: underline;">2. VIATECHNIK CONTACT PERSON</span>.  VIATechnik will designate one of its employees to serve as the contact person for Client in connection with the Services and the Work

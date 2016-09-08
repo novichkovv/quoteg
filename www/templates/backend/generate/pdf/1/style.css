@@ -84,6 +84,8 @@ body {
 }
 .table th {
     border-bottom: 2px solid black;
+    border-spacing: 10px;
+    padding: 10px;
 }
 .t1 th {
     border-bottom: 1px solid black;
