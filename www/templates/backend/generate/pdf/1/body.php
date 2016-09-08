@@ -131,8 +131,8 @@
             <thead>
             <tr>
                 <th style="width: 16%;">Service</th>
-                <th style="width: 37%;">Description</th>
-                <th style="width: 13%;">Estimated Qty</th>
+                <th style="width: 32%;">Description</th>
+                <th style="width: 18%;">Estimated Qty</th>
                 <th>Rate</th>
                 <th>Estimated Total</th>
             </tr>
